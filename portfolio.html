@@ -75,6 +75,19 @@ h2{font-size:clamp(27px,3.5vw,40px);line-height:1.22;letter-spacing:-.035em;marg
 .tag.subtle{border-color:#454658;color:#abb6c9}
 .link{display:inline-flex;align-items:center;gap:8px;color:#ff899d;font-size:13px;font-weight:800}
 .link:hover{text-decoration:underline;text-underline-offset:4px}
+.proof-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.proof-card{border:1px solid #3b4252;border-radius:var(--radius);padding:29px;background:linear-gradient(160deg,#161d29,#111720);display:flex;flex-direction:column;gap:0;min-width:0}
+.proof-card:first-child{border-color:#654251;background:linear-gradient(145deg,#2a1b2b,#111923 65%)}
+.proof-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.proof-state{font-size:10px;font-weight:850;letter-spacing:.11em;text-transform:uppercase;border:1px solid #406451;color:var(--mint);padding:4px 9px;border-radius:7px}
+.proof-state.pending{color:#efb9c4;border-color:#805062}
+.proof-card h3{font-size:24px;line-height:1.22;letter-spacing:-.025em;margin:8px 0 16px}
+.proof-point{font-size:14px;color:#c0c9d9;line-height:1.7;margin:0 0 12px}
+.proof-point strong{color:#f1f5fb}
+.proof-stats{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 23px}
+.proof-stats span{font-size:11px;font-weight:750;color:#b9ebd6;border:1px solid #355047;background:#192c2a;padding:6px 9px;border-radius:7px}
+.proof-card .link{margin-top:auto}
+.proof-note{margin:13px 0 0;color:var(--muted);font-size:12px}
 .project-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:18px}
 .project{border-radius:var(--radius);padding:29px;border:1px solid var(--line);background:var(--panel)}
 .project.main{background:linear-gradient(125deg,#1f222f,#121821);border-color:#544357}
@@ -112,7 +125,7 @@ h2{font-size:clamp(27px,3.5vw,40px);line-height:1.22;letter-spacing:-.035em;marg
 @media(max-width:900px){.contact-links{flex:0 1 410px}}
 @media(max-width:640px){.contact-links{margin-top:22px;width:100%;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.contact-link{padding:10px;font-size:12px}}
 @media(max-width:370px){.contact-links{grid-template-columns:1fr}}
-@media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:67px;gap:28px}.hero-side{max-width:590px}.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.project-grid{grid-template-columns:1fr}.contact{margin-top:50px}}
+@media(max-width:900px){.proof-grid{grid-template-columns:1fr}.hero{grid-template-columns:1fr;padding-top:67px;gap:28px}.hero-side{max-width:590px}.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.project-grid{grid-template-columns:1fr}.contact{margin-top:50px}}
 @media(max-width:640px){.wrap{padding-inline:19px}.nav{flex-direction:column;align-items:flex-start;padding:18px 0;gap:13px;min-height:auto}nav{gap:16px}.hero{padding:55px 0 46px}h1{font-size:48px}.lede{font-size:16px}.hero-side{padding:21px}.metric-grid{gap:9px;margin-bottom:46px}.metric{padding:18px}.metric strong{font-size:30px}.feature-grid{grid-template-columns:1fr}.section{padding:28px 0}.section-heading{display:block}.section-explain{margin-top:12px}.review-head{display:none}.review-row{grid-template-columns:1fr auto;gap:3px 12px;padding:17px}.review-row span{grid-column:1 / -1;grid-row:2}.review-row a{grid-column:2;grid-row:1}.contact{display:block;padding:28px;margin:46px 0}.foot{display:block}.foot p{margin:0 0 11px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.button{transition:none}}
 </style>
@@ -124,6 +137,7 @@ h2{font-size:clamp(27px,3.5vw,40px);line-height:1.22;letter-spacing:-.035em;marg
     <a class="brand" href="#top" aria-label="NemesisDevX homepage"><span class="emblem" aria-hidden="true">N</span><span>NEMESISDEVX</span></a>
     <nav aria-label="Portfolio navigation">
       <a href="#merged">Merged upstream</a>
+      <a href="#proof">Case studies</a>
       <a href="#products">Shipped work</a>
       <a href="#review">In review</a>
       <a class="hire" href="#contact">Work with me ↗</a>
@@ -221,9 +235,37 @@ h2{font-size:clamp(27px,3.5vw,40px);line-height:1.22;letter-spacing:-.035em;marg
       </article>
     </div>
   </section>
+
+  <section id="proof" class="section" aria-labelledby="proof-heading">
+    <div class="section-heading">
+      <div><div class="kicker">02 / Engineering evidence</div><h2 id="proof-heading">The bug, the fix, the proof.</h2></div>
+      <p class="section-explain">Two real examples of how I work: a reviewed and merged accessibility fix, and a tested reliability fix awaiting its final upstream decision.</p>
+    </div>
+    <div class="proof-grid">
+      <article class="proof-card">
+        <div class="proof-head"><span class="kicker">Flutter Web · accessibility</span><span class="proof-state">Merged upstream</span></div>
+        <h3>Keeping slider values correct for assistive technology.</h3>
+        <p class="proof-point"><strong>Problem.</strong> When a Web slider became enabled, its accessibility attributes could retain incorrect initial values, leaving assistive technology with stale information.</p>
+        <p class="proof-point"><strong>Approach.</strong> Reproduce the disabled-to-enabled transition, correct the semantics initialization path, and cover the behavior with regression tests.</p>
+        <p class="proof-point"><strong>Evidence.</strong> Flutter reviewers validated the before/after behavior and the fix was merged into the framework on 4 November 2026.</p>
+        <div class="proof-stats"><span>Framework &amp; engine semantics</span><span>Reviewer-validated</span><span>Merged PR #195564</span></div>
+        <a class="link" href="https://github.com/flutter/flutter/pull/195564" target="_blank" rel="noopener noreferrer" aria-label="Inspect merged Flutter accessibility change PR 195564">Inspect the merged code and review ↗</a>
+      </article>
+      <article class="proof-card">
+        <div class="proof-head"><span class="kicker">Dart-Code · VS Code reliability</span><span class="proof-state pending">Under review</span></div>
+        <h3>Preventing DTD shutdown races and unhandled rejections.</h3>
+        <p class="proof-point"><strong>Problem.</strong> In-flight asynchronous device events and pending handlers could resume after Dart Tooling Daemon disposal and trigger unhandled promise rejections.</p>
+        <p class="proof-point"><strong>Approach.</strong> Clean up subscriptions, protect post-await continuations, and write targeted tests for disposal races and service requests.</p>
+        <p class="proof-point"><strong>Evidence.</strong> Red-before/green-after reproduction, passing Dart and Flutter CI, and 95% Codecov patch coverage on commit <code>3329e02b</code>. This PR has <em>not</em> merged.</p>
+        <div class="proof-stats"><span>95% patch coverage</span><span>Multi-bot CI passed</span><span>PR #6349 open</span></div>
+        <a class="link" href="https://github.com/Dart-Code/Dart-Code/pull/6349" target="_blank" rel="noopener noreferrer" aria-label="Inspect Dart-Code DTD lifecycle pull request 6349">Inspect the diff, CI and reviewer feedback ↗</a>
+      </article>
+    </div>
+    <p class="proof-note">Evidence snapshot: 5 November 2026. Follow linked GitHub discussions for live review and merge status. Contributions are independent; neither implies employment by the maintainers.</p>
+  </section>
   <section id="products" class="section">
     <div class="section-heading">
-      <div><div class="kicker">02 / Real-world delivery</div><h2>Shipped software and client-ready systems.</h2></div>
+      <div><div class="kicker">03 / Real-world delivery</div><h2>Shipped software and client-ready systems.</h2></div>
       <p class="section-explain">A real store release, a private client pilot and public technical repositories. Every project is labeled by its actual delivery status.</p>
     </div>
     <div class="project-grid">
@@ -261,7 +303,7 @@ h2{font-size:clamp(27px,3.5vw,40px);line-height:1.22;letter-spacing:-.035em;marg
   </section>
   <section id="review" class="section">
     <div class="section-heading">
-      <div><div class="kicker">03 / Ongoing engineering</div><h2>Work submitted upstream.</h2></div>
+      <div><div class="kicker">04 / Ongoing engineering</div><h2>Work submitted upstream.</h2></div>
       <p class="section-explain">These are open or draft submissions, <strong>not merged work</strong>. Check each PR for its live status.</p>
     </div>
     <div class="review-panel" role="table" aria-label="Open-source pull requests under review">
@@ -280,7 +322,7 @@ h2{font-size:clamp(27px,3.5vw,40px);line-height:1.22;letter-spacing:-.035em;marg
     <p class="caption">Portfolio snapshot: 4 November 2026, with six verified merged contributions and eight open submissions. Live GitHub pages supersede the snapshot if review or merge status changes.</p>
   </section>
   <section class="section">
-    <div class="kicker">04 / Tools I use</div><h2>Comfortable across the stack.</h2>
+    <div class="kicker">05 / Tools I use</div><h2>Comfortable across the stack.</h2>
     <div class="stack" aria-label="Technical skills">
       <b>Flutter</b><b>Dart</b><b>TypeScript</b><b>VS Code extensions</b><b>Automated testing</b><b>Git & GitHub</b><b>GitHub Actions</b><b>Python</b><b>FastAPI</b><b>PHP & Laravel</b><b>Firebase</b><b>REST APIs</b><b>SQL</b><b>Android</b>
     </div>
