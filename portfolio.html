@@ -87,6 +87,10 @@ h2{font-size:clamp(27px,3.5vw,40px);line-height:1.22;letter-spacing:-.035em;marg
 .proof-stats{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 23px}
 .proof-stats span{font-size:11px;font-weight:750;color:#b9ebd6;border:1px solid #355047;background:#192c2a;padding:6px 9px;border-radius:7px}
 .proof-card .link{margin-top:auto}
+.proof-card.wide{grid-column:1/-1;background:linear-gradient(110deg,#152328,#161721 65%);border-color:#3b665e}
+.proof-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:8px}
+.proof-actions a{display:inline-flex;align-items:center;min-height:40px;font-size:13px;font-weight:800;padding:9px 13px;border:1px solid #4d6c69;border-radius:9px;color:#b3f4d8;background:#17302e}
+.proof-actions a:hover{border-color:var(--mint);background:#1c3d38}
 .proof-note{margin:13px 0 0;color:var(--muted);font-size:12px}
 .project-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:18px}
 .project{border-radius:var(--radius);padding:29px;border:1px solid var(--line);background:var(--panel)}
@@ -239,7 +243,7 @@ h2{font-size:clamp(27px,3.5vw,40px);line-height:1.22;letter-spacing:-.035em;marg
   <section id="proof" class="section" aria-labelledby="proof-heading">
     <div class="section-heading">
       <div><div class="kicker">02 / Engineering evidence</div><h2 id="proof-heading">The bug, the fix, the proof.</h2></div>
-      <p class="section-explain">Two real examples of how I work: a reviewed and merged accessibility fix, and a tested reliability fix awaiting its final upstream decision.</p>
+      <p class="section-explain">Three concrete examples: a merged accessibility fix, a human-approved before/after demo, and a tested reliability fix awaiting upstream review.</p>
     </div>
     <div class="proof-grid">
       <article class="proof-card">
@@ -259,6 +263,19 @@ h2{font-size:clamp(27px,3.5vw,40px);line-height:1.22;letter-spacing:-.035em;marg
         <p class="proof-point"><strong>Evidence.</strong> Red-before/green-after reproduction, passing Dart and Flutter CI, and 95% Codecov patch coverage on commit <code>3329e02b</code>. This PR has <em>not</em> merged.</p>
         <div class="proof-stats"><span>95% patch coverage</span><span>Multi-bot CI passed</span><span>PR #6349 open</span></div>
         <a class="link" href="https://github.com/Dart-Code/Dart-Code/pull/6349" target="_blank" rel="noopener noreferrer" aria-label="Inspect Dart-Code DTD lifecycle pull request 6349">Inspect the diff, CI and reviewer feedback ↗</a>
+      </article>
+      <article class="proof-card wide">
+        <div class="proof-head"><span class="kicker">Flutter Web · scrolling semantics</span><span class="proof-state pending">Human-approved · not merged</span></div>
+        <h3>Making semantic hit targets match the rows you see.</h3>
+        <p class="proof-point"><strong>Problem.</strong> After a scrollable list shrank, browser semantics offsets could stay stale: selecting the visually painted Row 4 activated Row 2 instead.</p>
+        <p class="proof-point"><strong>Approach.</strong> Reset stale DOM scroll adjustments when a node stops scrolling, then recheck semantic positions and hit testing.</p>
+        <p class="proof-point"><strong>Independent review.</strong> Flutter reviewer <code>flutter-zl</code> verified the change with before/after Web demos and approved PR #195578 on 3 November 2026. It remains open.</p>
+        <div class="proof-stats"><span>Human-approved</span><span>Before/after Web demos</span><span>PR #195578 open</span></div>
+        <div class="proof-actions" aria-label="Flutter scrolling proof links">
+          <a href="https://flutter-demo-93-before.web.app" target="_blank" rel="noopener noreferrer">Before: wrong row ↗</a>
+          <a href="https://flutter-demo-93-after.web.app" target="_blank" rel="noopener noreferrer">After: correct row ↗</a>
+          <a href="https://github.com/flutter/flutter/pull/195578" target="_blank" rel="noopener noreferrer">Reviewer approval &amp; diff ↗</a>
+        </div>
       </article>
     </div>
     <p class="proof-note">Evidence snapshot: 5 November 2026. Follow linked GitHub discussions for live review and merge status. Contributions are independent; neither implies employment by the maintainers.</p>
