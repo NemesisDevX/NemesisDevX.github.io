@@ -9,10 +9,10 @@ const root = process.cwd();
 const output = path.join(root, 'qa-screenshots');
 fs.mkdirSync(output, { recursive: true });
 const pages = [
-  { file: 'v6-preview.html', lang: 'en', kind: 'home' },
-  { file: 'v6-preview-ar.html', lang: 'ar', kind: 'home' },
-  { file: 'v6-work-preview.html', lang: 'en', kind: 'work' },
-  { file: 'v6-work-preview-ar.html', lang: 'ar', kind: 'work' }
+  { file: 'index.html', lang: 'en', kind: 'home' },
+  { file: 'index-ar.html', lang: 'ar', kind: 'home' },
+  { file: 'work.html', lang: 'en', kind: 'work' },
+  { file: 'work-ar.html', lang: 'ar', kind: 'work' }
 ];
 const viewports = [
   [320, 700], [390, 844], [768, 1024], [1024, 768], [1440, 900], [1920, 1080]
@@ -61,7 +61,7 @@ try {
       }
       if (!(await page.locator('a[href*="awesome-phone-call-agents/pull/600"]').count())) broken.push('missing community listing');
       if (broken.length) errors.push(key + ': ' + broken.join(', '));
-      if ((width === 390 || width === 1440) && ['v6-preview.html','v6-preview-ar.html','v6-work-preview.html'].includes(p.file)) {
+      if ((width === 390 || width === 1440) && ['index.html','index-ar.html','work.html'].includes(p.file)) {
         await page.screenshot({ path: path.join(output, p.file.replace('.html', '') + '-' + width + '.png'), fullPage: false });
       }
       console.log((broken.length ? 'FAIL ' : 'PASS ') + key + ' scroll=' + info.scroll + ' client=' + info.client + (broken.length ? ' / ' + broken.join(', ') : ''));

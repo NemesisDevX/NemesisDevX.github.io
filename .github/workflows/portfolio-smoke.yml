@@ -4,7 +4,12 @@ on:
   push:
     branches: [main]
     paths:
-      - 'v6-*.html'
+      - 'index.html'
+      - 'index-ar.html'
+      - 'work.html'
+      - 'work-ar.html'
+      - 'portfolio.html'
+      - 'portfolio-ar.html'
       - 'assets/studio-v6.css'
       - 'scripts/qa-v6.mjs'
       - '.github/workflows/portfolio-smoke.yml'
