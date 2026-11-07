@@ -1,5 +1,6 @@
 (() => {
   'use strict';
+  document.documentElement.classList.add('js-enhanced');
   const motionOK = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (motionOK) document.documentElement.classList.add('motion');
   document.querySelectorAll('.hero-line').forEach((line, i) => {
@@ -24,15 +25,26 @@
   const toggle = document.querySelector('.mobile-toggle');
   const menu = document.querySelector('.mobile-nav');
   if (toggle && menu) {
-    toggle.addEventListener('click', () => {
-      const open = toggle.getAttribute('aria-expanded') !== 'true';
+    const arabic = document.documentElement.lang === 'ar';
+    const setOpen = (open, restoreFocus = false) => {
       toggle.setAttribute('aria-expanded', String(open));
-      toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+      toggle.setAttribute('aria-label', arabic ? (open ? 'إغلاق القائمة' : 'فتح القائمة') : (open ? 'Close navigation' : 'Open navigation'));
       menu.classList.toggle('open', open);
+      if (!open && restoreFocus) toggle.focus();
+    };
+    toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+    menu.querySelectorAll('a').forEach(anchor => anchor.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        event.preventDefault();
+        setOpen(false, true);
+      }
     });
-    menu.querySelectorAll('a').forEach(anchor => anchor.addEventListener('click', () => {
-      menu.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-    }));
+    document.addEventListener('click', event => {
+      if (toggle.getAttribute('aria-expanded') === 'true' && !toggle.contains(event.target) && !menu.contains(event.target)) setOpen(false);
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 700 && toggle.getAttribute('aria-expanded') === 'true') setOpen(false);
+    });
   }
 })();

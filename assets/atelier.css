@@ -24,3 +24,22 @@ html.motion .hero-line>.line-inner{display:block;animation:rise-in .85s var(--ea
 .mobile-nav{display:none}
 @media(max-width:960px){.hero::before{right:0;width:min(500px,100%)}}
 @media(max-width:700px){.mobile-nav.open{display:flex}}
+
+/* v4.1 independent QA corrections: responsive containment, keyboard/touch targets, no-JS fallback */
+@media(min-width:961px) and (max-width:1210px){.hero::before{right:-25px}}
+.lang-link{display:inline-flex;align-items:center;justify-content:center;min-height:36px;min-width:36px}
+.header-contact{min-height:36px}
+.desktop-nav a{display:inline-flex;align-items:center;min-height:32px}
+.footer-links a{display:inline-flex;align-items:center;min-height:30px;padding-block:5px}
+.filter-nav a{display:inline-flex;align-items:center;min-height:34px;padding-block:7px}
+.recent a{display:inline-flex;align-items:center;min-height:34px}
+.text-link{min-height:34px;align-items:center}
+@media(max-width:700px){
+ .brand-tag{font-size:10px}
+ .lang-link{min-height:40px;min-width:38px}
+ .mobile-nav a{display:flex;align-items:center;min-height:36px}
+ html:not(.js-enhanced) .site-header{height:auto}
+ html:not(.js-enhanced) .mobile-toggle{display:none}
+ html:not(.js-enhanced) .mobile-nav{display:flex;position:static;flex-direction:row;flex-wrap:wrap;gap:8px 16px;padding:13px 18px}
+}
+@media(prefers-reduced-motion:reduce){.hero-line .line-inner{animation:none!important;transform:none!important}}
