@@ -66,7 +66,7 @@ try {
       for (const n of expected) {
         if (!(await page.locator('.proof-row[href*="/pull/' + n + '"]').count())) broken.push('missing PR #' + n);
       }
-      if (!(await page.locator('a[href*="awesome-phone-call-agents/pull/600"]').count())) broken.push('missing community listing');
+      if (await page.locator('.community').count()) broken.push('unwanted community directory section');
       if (broken.length) errors.push(key + ': ' + broken.join(', '));
       if ((width === 390 || width === 1440) && ['index.html','index-ar.html','work.html'].includes(p.file)) {
         await page.screenshot({ path: path.join(output, p.file.replace('.html', '') + '-' + width + '.png'), fullPage: false });
