@@ -17,7 +17,7 @@ const pages = [
 const viewports = [
   [320, 700], [390, 844], [768, 1024], [1024, 768], [1440, 900], [1920, 1080]
 ];
-const expected = ['195564', '6349', '6373', '6301', '75', '6337', '6332', '6324'];
+const expected = ['195564', '6367', '6349', '6373', '6301', '75', '6337', '6332', '6324'];
 let errors = [];
 let tests = 0;
 const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
@@ -48,12 +48,12 @@ try {
       if (info.scroll > info.client + 1) broken.push('overflow=' + (info.scroll - info.client) + 'px');
       if (!info.h1 || info.h1.width <= 0) broken.push('missing h1');
       if (info.h1 && (info.h1.left < -2 || info.h1.right > width + 2)) broken.push('h1 clipped');
-      if (info.rows !== 8) broken.push('proofRows=' + info.rows);
+      if (info.rows !== 9) broken.push('proofRows=' + info.rows);
       const visibleOrder = await page.locator('.proof-row').evaluateAll(nodes => nodes.map(el => (el.getAttribute('href').match(/\/pull\/(\d+)/) || [])[1]));
       if (visibleOrder.join(',') !== expected.join(',')) broken.push('priority order=' + visibleOrder.join(','));
       if (p.kind === 'work') {
-        const caseOrder = await page.locator('section.case-block[id="flutter"],section.case-block[id="dtd"],section.case-block[id="ci"]').evaluateAll(nodes => nodes.map(el => el.id));
-        if (caseOrder.join(',') !== 'flutter,dtd,ci') broken.push('case study order=' + caseOrder.join(','));
+        const caseOrder = await page.locator('section.case-block[id="flutter"],section.case-block[id="dtd-sockets"],section.case-block[id="dtd"],section.case-block[id="ci"]').evaluateAll(nodes => nodes.map(el => el.id));
+        if (caseOrder.join(',') !== 'flutter,dtd-sockets,dtd,ci') broken.push('case study order=' + caseOrder.join(','));
       }
 
       if (info.hasImage) broken.push('unexpected image');
