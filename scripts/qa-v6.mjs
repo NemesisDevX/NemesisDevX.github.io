@@ -20,7 +20,7 @@ const viewports = [
   [320, 700], [390, 844], [768, 1024], [1024, 768], [1440, 900], [1920, 1080]
 ];
 // Ranked by documented engineering impact, not merge timestamp.
-const expected = ['6422', '2806', '10057', '6388', '195564', '6367', '6349', '6373', '6301', '75', '6337', '6332', '6324'];
+const expected = ['6367', '195564', '6422', '10057', '6349', '2806', '6301', '75', '6388', '6373', '6337', '6332', '6324'];
 let errors = [];
 let tests = 0;
 const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
