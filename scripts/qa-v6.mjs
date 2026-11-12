@@ -12,12 +12,15 @@ const pages = [
   { file: 'index.html', lang: 'en', kind: 'home' },
   { file: 'index-ar.html', lang: 'ar', kind: 'home' },
   { file: 'work.html', lang: 'en', kind: 'work' },
-  { file: 'work-ar.html', lang: 'ar', kind: 'work' }
+  { file: 'work-ar.html', lang: 'ar', kind: 'work' },
+  { file: 'portfolio.html', lang: 'en', kind: 'work' },
+  { file: 'portfolio-ar.html', lang: 'ar', kind: 'work' }
 ];
 const viewports = [
   [320, 700], [390, 844], [768, 1024], [1024, 768], [1440, 900], [1920, 1080]
 ];
-const expected = ['195564', '6367', '6349', '6373', '6301', '75', '6337', '6332', '6324', '6388'];
+// Ranked by documented engineering impact, not merge timestamp.
+const expected = ['6422', '2806', '10057', '6388', '195564', '6367', '6349', '6373', '6301', '75', '6337', '6332', '6324'];
 let errors = [];
 let tests = 0;
 const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
@@ -49,12 +52,20 @@ try {
       if (!info.h1 || info.h1.width <= 0) broken.push('missing h1');
       if (info.h1 && (info.h1.left < -2 || info.h1.right > width + 2)) broken.push('h1 clipped');
       if (info.rows !== expected.length) broken.push('proofRows=' + info.rows);
+      if (p.kind === 'home') {
+        if ((await page.locator('.as-figure').innerText()).trim() !== '13') broken.push('incorrect hero merge count');
+        if ((await page.locator('.stats-inner .stat').first().innerText()).indexOf('13') === -1) broken.push('incorrect stats merge count');
+      }
       const visibleOrder = await page.locator('.proof-row').evaluateAll(nodes => nodes.map(el => (el.getAttribute('href').match(/\/pull\/(\d+)/) || [])[1]));
       if (visibleOrder.join(',') !== expected.join(',')) broken.push('priority order=' + visibleOrder.join(','));
       if (p.kind === 'work') {
         const caseOrder = await page.locator('section.case-block[id="flutter"],section.case-block[id="dtd-sockets"],section.case-block[id="dtd"],section.case-block[id="ci"]').evaluateAll(nodes => nodes.map(el => el.id));
         if (caseOrder.join(',') !== 'flutter,dtd-sockets,dtd,ci') broken.push('case study order=' + caseOrder.join(','));
         if (!(await page.locator('#test-explorer .case-link[href*="/pull/6388"]').count())) broken.push('missing Test Explorer case study');
+        for (const [section, pr] of [['test-helpers','6422'], ['network-responsive','10057'], ['analytics-fallback','2806']]) {
+          if (!(await page.locator('#' + section + ' .case-link[href*="/pull/' + pr + '"]').count())) broken.push('missing case study ' + pr);
+        }
+        if ((await page.locator('section.case-block').count()) !== 10) broken.push('expected 8 engineering studies + 2 product/client cards');
       }
 
       if (info.hasImage) broken.push('unexpected image');
