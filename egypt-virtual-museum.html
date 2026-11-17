@@ -162,6 +162,38 @@ html[dir=ltr] .era:before{right:auto;left:0}
 @media(max-width:1100px){.hero{min-height:675px;padding:0 33px}.hero-visual{min-height:675px}.hero-copy{padding-block:65px}.hero h1{font-size:clamp(49px,5.1vw,64px)}.hero-canvas{height:570px}.curator-note{grid-template-columns:1fr 1.4fr;gap:25px}.curator-copy{grid-column:2}.experience{gap:55px}.cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:780px){header{height:74px;padding:0 18px}.hero{grid-template-columns:1fr;min-height:auto;padding:35px 26px 70px;gap:0}.hero-copy,html[dir=rtl] .hero-copy{padding:30px 0 4px}.hero-topline{margin-bottom:24px}.hero h1{font-size:clamp(47px,8vw,67px);line-height:1.5}.hero-visual{min-height:0;height:510px}.hero-canvas{height:500px;max-width:560px}.hero-footnote{padding:28px 0 5px;margin-top:0}.statbar{gap:0;padding:20px 15px}.stat{padding-inline:13px}.curator-note{grid-template-columns:1fr;gap:15px;padding:67px 24px}.curator-copy{grid-column:auto}.curator-head h2{white-space:normal}.section{padding:75px 24px}.section-top{display:block}.section-top p{max-width:620px}.experience{grid-template-columns:1fr;gap:30px;padding:78px 24px}.era{padding-inline-end:10px}.kids-in{padding:65px 25px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:570px){header{height:70px;padding:0 13px}.logo strong{font-size:11px}.logo small{font-size:7px}.tools{gap:12px}.tools .btn{display:none}.hero{padding:22px 20px 50px}.hero-topline{font-size:8px;gap:9px}.hero-topline-rule{width:19px}.hero-eyebrow{font-size:11px}.hero h1{font-size:clamp(37px,11vw,57px);line-height:1.58;letter-spacing:-1.9px}.hero p{font-size:12.5px}.hero-actions{gap:14px;align-items:flex-start}.hero-actions .btn{padding:14px 16px;font-size:12px}.hero-link{font-size:11px;padding:11px 0}.hero-visual{height:420px}.hero-canvas{height:430px;width:100%}.hero-image{inset:7% 15% 9%}.arch-ring{width:91%;left:4.5%}.hero-caption{padding:14px 17px;min-width:245px;bottom:3%;right:0}.hero-caption strong{font-size:14px}.hero-caption small{font-size:8px}.hero-side-code{font-size:8px}.statbar{flex-wrap:wrap;justify-content:center;padding:14px}.stat{flex:1;justify-content:center;gap:7px;padding:8px;min-width:100px}.stat strong{font-size:23px}.stat span{font-size:8px}.section{padding:65px 18px}.section-top h2{font-size:36px}.halls{grid-template-columns:1fr;gap:12px}.hall:nth-child(n){grid-column:span 1;min-height:340px}.hall:nth-child(-n+2){min-height:400px}.hall h3{font-size:22px}.cards{gap:9px}.card-image{height:182px}.card-image img{padding:10px}.card-body{padding:13px 12px}.card-body strong{font-size:13px;min-height:55px}.card-body small{font-size:9px}.card-body p{font-size:9px}.card:after{font-size:15px;padding:0 12px 10px}.eras{padding:65px 22px}.eras-grid{grid-template-columns:1fr;border:0;margin-top:35px;gap:12px}.era{border:0;border-top:1px solid #ac9d86;padding:18px 0}.era:before{top:15px}.kids-in{padding:60px 22px}.kids h2{font-size:35px}.kids-art{font-size:115px;margin:0}.hero-footnote{font-size:9px}}
+
+/* Tour polish and accessibility patches */
+.tour-ui{height:min(730px,88vh);border:1px solid #a58c6177;box-shadow:0 30px 80px #0008}
+.tour-room{--pointer-x:0deg;--pointer-y:0deg;transform:perspective(1300px) rotateY(var(--pointer-x)) rotateX(var(--pointer-y));transition:transform .24s ease;transform-origin:center center;overflow:hidden;background:radial-gradient(ellipse at 50% 28%,#806c4d77,transparent 64%),#17241b}
+.tour-room:after{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 48%,transparent 25%,#10190f6f 95%);z-index:3}
+.tour-room canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:2;touch-action:pan-y}
+.tour-room .back-wall{border-color:#be9b66;box-shadow:0 20px 80px #e8bc7d29}
+.tour-object-img{z-index:4;object-fit:contain;filter:drop-shadow(10px 18px 23px #000b);width:30%;height:51%;top:17%;pointer-events:none}
+.tour-room .pillar{border-color:#b1966e}
+.tour-caption{z-index:8;background:#111a17eb;border-color:#dcc29860;box-shadow:0 18px 60px #0009;border-radius:2px;width:min(370px,80%);padding:22px}
+.tour-caption h3{color:#f3eee4;font-size:26px;line-height:1.4}
+.tour-caption p{color:#c1cbbb;font-size:12px}
+.tour-controls button{border-color:#b89a71;color:#e2c394;background:#2d3a2e;font-size:12px;transition:background .2s}
+.tour-controls button:hover{background:#415341}
+.tour-close{background:#0d1510d8;color:#fff;border-color:#b99c74}
+.artifact-info{background:#f7f1e6;color:#29372a}
+.artifact-info h2{color:#1d2b21}
+.artifact-info p{color:#586456}
+.artifact-info .fact{border-color:#d8cabb}
+.artifact-info .fact span{color:#6f7d6c}
+.artifact-view>img{background:#dcd3c4;color:#283c2c}
+.quiz-dialog{background:#f7f1e6;color:#29372a;border-radius:3px}
+.quiz-dialog .question{color:#243328}
+.quiz-dialog .answer{background:#ece2d2;color:#23352a;text-align:start;border-color:#c5b9a8}
+.quiz-dialog .answer:hover{background:#dfd2bd}
+.quiz-dialog .answer.correct{background:#d9ead5;color:#1e3b2c;border-color:#719870}
+.quiz-dialog .answer.wrong{background:#f2d5d1;color:#5b2525;border-color:#b87570}
+.quiz-dialog .feedback{color:#6c5d3f}
+.quiz-dialog .progress{color:#99764c}
+#collectionCounter{font-weight:600;color:#71776b}
+@media(max-width:670px){.tour-room{transform:none!important}.tour-object-img{width:51%;height:48%;top:17%}.tour-ui{height:min(670px,92vh)}.tour-caption{right:12px;left:12px;bottom:11px;width:auto;padding:12px}.tour-caption h3{font-size:20px}.tour-caption p{font-size:10px}.tour-controls button{padding:7px 12px}.artifact-info{padding:35px 22px}.artifact-view>img{height:260px}.hero-canvas{height:370px}.hero-visual{height:370px}}
+@media(prefers-reduced-motion:reduce){.tour-room{transform:none!important;transition:none}.tour-object-img{transition:none}}
 </style>
 </head>
 <body>
@@ -273,6 +305,68 @@ document.querySelector('#menu').setAttribute('aria-expanded','false');
 document.querySelector('#menu').addEventListener('click',()=>document.querySelector('#menu').setAttribute('aria-expanded',document.querySelector('#nav').classList.contains('open')?'true':'false'));
 enhanceKeyboardAndTouch();
 hydrateMetImages();
+
+
+/* Low-power WebGL architecture. Objects remain original museum photographs,
+   while the room is a deliberately stylized reconstruction, not an artifact scan. */
+(function(){
+ let world=null,loading=false;
+ const overlay=document.getElementById('tourOverlay');
+ const room=document.querySelector('.tour-room');
+ if(!overlay||!room)return;
+ const title=document.createElement('span');title.id='tour3DMode';title.style.cssText='position:absolute;left:16px;bottom:15px;z-index:6;color:#dac5a1;background:#101a17ca;border:1px solid #c4a87555;padding:8px 10px;font:600 9px DM Sans,Arial,sans-serif;letter-spacing:1.2px;pointer-events:none';title.textContent='GALLERY ARCHITECTURE / ARTISTIC 3D';
+ room.append(title);
+ function resize(){
+ if(!world)return;
+ const w=room.clientWidth,h=room.clientHeight;world.renderer.setSize(w,h,false);world.camera.aspect=w/h;world.camera.updateProjectionMatrix();
+ }
+ async function start(){
+ if(world||loading||!window.WebGLRenderingContext||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ loading=true;
+ try{
+ const THREE=await import('https://esm.sh/three@0.169.0');
+ if(!overlay.classList.contains('active'))return;
+ const canvas=document.createElement('canvas');canvas.setAttribute('aria-hidden','true');canvas.className='museum-webgl';room.append(canvas);
+ const renderer=new THREE.WebGLRenderer({canvas,alpha:false,antialias:true,powerPreference:'low-power'});
+ renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.4));
+ renderer.outputColorSpace=THREE.SRGBColorSpace;
+ renderer.toneMapping=THREE.ACESFilmicToneMapping;
+ renderer.toneMappingExposure=1.3;
+ const scene=new THREE.Scene();scene.background=new THREE.Color(0x171d18);scene.fog=new THREE.Fog(0x171d18,12,32);
+ const camera=new THREE.PerspectiveCamera(57,1,.2,65);camera.position.set(0,2.4,10.6);
+ const stone=new THREE.MeshStandardMaterial({color:0x8d8169,roughness:.89});
+ const sideStone=new THREE.MeshStandardMaterial({color:0x646554,roughness:.9});
+ const accent=new THREE.MeshStandardMaterial({color:0xab8857,metalness:.36,roughness:.44});
+ const dark=new THREE.MeshStandardMaterial({color:0x262e26,roughness:.88});
+ function cube(w,h,d,mat,x,y,z){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);scene.add(m);return m}
+ function column(x,z){const mesh=new THREE.Mesh(new THREE.CylinderGeometry(.56,.7,5.4,24),stone);mesh.position.set(x,2.55,z);scene.add(mesh);const head=new THREE.Mesh(new THREE.CylinderGeometry(.83,.63,.32,24),accent);head.position.set(x,5.41,z);scene.add(head);const base=new THREE.Mesh(new THREE.CylinderGeometry(.78,.78,.23,24),accent);base.position.set(x,-.05,z);scene.add(base)}
+ scene.add(new THREE.HemisphereLight(0xffdeb4,0x283b2d,2.4));
+ const fill=new THREE.PointLight(0xf6bb7a,38,19);fill.position.set(0,5,0);scene.add(fill);
+ for(let x of [-1,1])for(let z of [-8,-3,3,8])column(x*6,z);
+ cube(15,.35,27,stone,0,-.25,0);cube(15,.38,27,dark,0,6.4,0);cube(.4,6.6,27,sideStone,-7.6,3.1,0);cube(.4,6.6,27,sideStone,7.6,3.1,0);cube(15,6.6,.4,sideStone,0,3.1,-13.3);
+ for(let n=-5;n<=5;n++){const seam=cube(.018,.02,26,accent,n*1.25,-.062,0);seam.material=accent}
+ for(let z=-11;z<13;z+=3)cube(14,.03,.04,accent,0,-.05,z);
+ const podium=cube(2.35,.8,2,sideStone,0,.3,-5.9);cube(2.5,.1,2.15,accent,0,.77,-5.9);
+ let yaw=0,pitch=0,zoom=10.6,dragging=false,startX=0,startY=0,raf=0,stopped=false;
+ function down(e){dragging=true;startX=e.clientX;startY=e.clientY;canvas.setPointerCapture?.(e.pointerId)}
+ function move(e){if(!dragging)return;const dx=e.clientX-startX,dy=e.clientY-startY;startX=e.clientX;startY=e.clientY;yaw=Math.max(-.7,Math.min(.7,yaw-dx*.003));pitch=Math.max(-.28,Math.min(.23,pitch-dy*.002))}
+ function up(){dragging=false}
+ function wheel(e){e.preventDefault();zoom=Math.max(7.2,Math.min(12,zoom+Math.sign(e.deltaY)*.5))}
+ canvas.addEventListener('pointerdown',down);canvas.addEventListener('pointermove',move);canvas.addEventListener('pointerup',up);canvas.addEventListener('pointercancel',up);canvas.addEventListener('wheel',wheel,{passive:false});
+ world={THREE,scene,camera,canvas,renderer,resize,stop(){
+ stopped=true;cancelAnimationFrame(raf);window.removeEventListener('resize',resize);canvas.removeEventListener('pointerdown',down);canvas.removeEventListener('pointermove',move);canvas.removeEventListener('pointerup',up);canvas.removeEventListener('pointercancel',up);canvas.removeEventListener('wheel',wheel);renderer.dispose();scene.traverse(o=>o.geometry?.dispose());[stone,sideStone,accent,dark].forEach(m=>m.dispose());canvas.remove();world=null;
+ }};
+ window.addEventListener('resize',resize);resize();
+ room.classList.add('webgl-active');title.textContent='3D ARCHITECTURE · DRAG TO EXPLORE · SCROLL TO ZOOM';
+ function loop(){if(stopped||!overlay.classList.contains('active'))return;raf=requestAnimationFrame(loop);camera.position.z=zoom;camera.lookAt(Math.sin(yaw)*6,2.5+pitch*7,-6);renderer.render(scene,camera)}loop();
+ }catch(e){console.info('3D unavailable, keeping styled exhibition',e);title.textContent='INTERACTIVE EXHIBITION VIEW';room.querySelector('.museum-webgl')?.remove()}
+ finally{loading=false}
+ }
+ const originalTour=openTour;openTour=function(i){originalTour(i);start()};
+ const originalRenderTour=renderTour;renderTour=function(){originalRenderTour();if(world){const colors=[0x8d8169,0x827b67,0x79745f,0x776f61,0x97784c];world.scene.background.setHex(colors[tourIndex]);world.scene.fog.color.setHex(colors[tourIndex])}};
+ const observer=new MutationObserver(()=>{if(!overlay.classList.contains('active')&&world){world.stop();room.classList.remove('webgl-active');title.textContent='GALLERY ARCHITECTURE / ARTISTIC 3D'}});
+ observer.observe(overlay,{attributes:true,attributeFilter:['class']});
+})();
 
 </script>
 </body></html>
